@@ -3,7 +3,8 @@
 .idea/
 build/
 target/
-
+.classpath
+.project
 *.ipr
 *.iml
 *.iws
