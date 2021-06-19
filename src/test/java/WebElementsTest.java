@@ -32,7 +32,7 @@ public class WebElementsTest {
         button_delete = driver.findElement(By.xpath("//button[contains(@class, 'manually') and text()='Delete'][last()]"));
         System.out.println("(By.xPath) last Delete button is '%s' ".formatted(button_delete.getText()));
 
-
+            
         driver.navigate().to("http://the-internet.herokuapp.com/challenging_dom");
         WebElement lorem_value;
 
