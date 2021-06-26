@@ -45,11 +45,6 @@ public class Table {
         return table;
     }
 
-    public void getItemPosition(){
-        System.out.println(getRows().size());
-        System.out.println(getColumns().size());
-    }
-
     public WebElement getItem(int row, int column){
         return getTable().get(column).get(row);
     }
