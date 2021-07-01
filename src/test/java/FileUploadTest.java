@@ -4,19 +4,34 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.*;
+
 
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 public class FileUploadTest {
     WebDriver driver;
 
-    public FileUploadTest(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-    }
+    @BeforeTest
+    @Parameters("browser")
+    public void setup(String browser) throws Exception {
 
+        if(browser.equalsIgnoreCase("Chrome")){
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        }
+        else if(browser.equalsIgnoreCase("Edge")) {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+        }
+        else {
+            throw new Exception("Browser is not correct");
+        }
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
 
     @Test
     public void filUpload() throws StaleElementReferenceException {
@@ -44,7 +59,7 @@ public class FileUploadTest {
     }
 
 
-    @AfterMethod
+    @AfterClass
     public void tearDown(){
         driver.quit();
     }

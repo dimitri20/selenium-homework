@@ -4,22 +4,43 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+import java.util.concurrent.TimeUnit;
 
 public class JSexecutor {
     WebDriver driver;
-    public JSexecutor(){
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+
+    @BeforeTest
+    @Parameters("browser")
+    public void setup(String browser) throws Exception {
+
+        if(browser.equalsIgnoreCase("Chrome")){
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver();
+        }
+        else if(browser.equalsIgnoreCase("Edge")) {
+            WebDriverManager.edgedriver().setup();
+            driver = new EdgeDriver();
+        }
+        else {
+            throw new Exception("Browser is not correct");
+        }
+
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @Test
-    public void hover(){
+    public void hover() {
+
         driver.get("http://webdriveruniversity.com/To-Do-List/index.html");
+
         JavascriptExecutor js = (JavascriptExecutor) driver;
         Actions action = new Actions(driver);
+
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         WebElement practice_magic = driver.findElement(By.cssSelector("#container > ul > li:nth-child(3)"));
 
@@ -31,7 +52,6 @@ public class JSexecutor {
 
         //delete with JavascriptExecutor and remove()
         js.executeScript("arguments[0].remove()", practice_magic);
-
 
     }
 
@@ -57,8 +77,9 @@ public class JSexecutor {
             System.out.println("Entries text doesn't contain Entries");
     }
 
-    @AfterMethod
+    @AfterClass
     public void tearDown(){
         driver.quit();
     }
+
 }
