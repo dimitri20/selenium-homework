@@ -21,8 +21,8 @@
         </classes>
     </test>
 
-    <test name="EdgeTest">
-        <parameter name="browser" value="Edge" />
+    <test name="FirefoxTest">
+        <parameter name="browser" value="Firefox" />
         <classes>
             <class name="JSexecutor">
 

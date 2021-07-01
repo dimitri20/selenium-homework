@@ -4,7 +4,9 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.annotations.*;
 
 
@@ -20,11 +22,11 @@ public class FileUploadTest {
 
         if(browser.equalsIgnoreCase("Chrome")){
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(new ChromeOptions().addArguments("headless"));
         }
-        else if(browser.equalsIgnoreCase("Edge")) {
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
+        else if(browser.equalsIgnoreCase("Firefox")) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver(new FirefoxOptions().addArguments("headless"));
         }
         else {
             throw new Exception("Browser is not correct");
