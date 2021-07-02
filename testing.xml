@@ -10,11 +10,15 @@
 
         <classes>
 
-            <class name="JSexecutor">
+<!--            <class name="JSexecutor">-->
 
-            </class>
+<!--            </class>-->
 
-            <class name="FileUploadTest">
+<!--            <class name="FileUploadTest">-->
+
+<!--            </class>-->
+
+            <class name="CookieTest">
 
             </class>
 
@@ -24,13 +28,13 @@
     <test name="FirefoxTest">
         <parameter name="browser" value="Firefox" />
         <classes>
-            <class name="JSexecutor">
+<!--            <class name="JSexecutor">-->
 
-            </class>
+<!--            </class>-->
 
-            <class name="FileUploadTest">
+<!--            <class name="FileUploadTest">-->
 
-            </class>
+<!--            </class>-->
 
         </classes>
 
